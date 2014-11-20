@@ -1,0 +1,27 @@
+*** Settings ***
+Documentation     Populate 5 entries with invalid data. After running the test case, no entries will be saved to the form repository.
+Test Setup        Open Browser To Test Form
+Test Template     Fill With Invalid Entries
+Resource          resource.txt
+
+*** Test Cases ***   		 Name               Age               Gender    Sports
+Invalid Name         		 ${INVALID_NAME}    ${MIN_AGE}        Male      BasketballX
+Invalid Age          		 ${MAX_NAME}        ${INVALID_AGE}    Female    Swimming
+Invalid Name And Age		 ${INVALID_NAME}    ${INVALID_AGE}    Male      MMA
+Invalid Gender       	 	 ${MIN_NAME}        ${MAX_AGE}        Others    Volleyball
+Invalid Name And Gender		 ${NORMAL_NAME}     ${INVALID_AGE}    Others    Wrestling
+
+
+*** Keywords ***
+Fill With Invalid Entries
+    [Arguments]    ${name}    ${age}    ${gender}    ${sports}
+    Input Name    ${name}
+    Input Age    ${age}
+    Select Gender    ${gender}
+    Display Error Messages
+
+Display Error Messages
+    Page Should Contain	${ERROR_INVALID}
+    Log    ${ERROR_INVALID}
+    Close Browser
+
