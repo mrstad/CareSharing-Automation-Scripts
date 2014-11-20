@@ -12,7 +12,8 @@ ${CONFIRM}		  Salamat!
 ${NAME_FIELD}	  entry.1563791636
 ${AGE_FIELD}	  entry.930637752
 ${GENDER_FIELD}	  entry.351010933
-${SPORTS_FIELD}	  entry_1027532989
+${SPORTS_MALE}	  entry.1887354367
+${SPORTS_FEMALE}  entry.175266393
 
 # Buttons
 ${CONTINUE}		  continue
