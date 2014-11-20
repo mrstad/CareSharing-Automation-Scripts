@@ -1,0 +1,39 @@
+*** Settings ***
+Documentation     A resource file with reusable keywords and variables.
+
+Library           Selenium2Library
+Resource          testdata.txt
+
+*** Keywords ***
+Open Browser To Test Form
+    Open Browser    ${URL}    ${BROWSER}
+    Maximize Browser Window
+    Set Selenium Speed    ${DELAY}
+    Test Form Should Be Open
+
+Test Form Should Be Open
+    Title Should Be    ${TITLE}
+
+Input Name
+    [Arguments]    ${name}
+    Input Text    ${NAME_FIELD}    ${name}
+
+Input Age
+    [Arguments]    ${age}
+    Input Text    ${AGE_FIELD}    ${age}
+
+Select Gender
+    [Arguments]    ${value}
+    Select Radio Button   ${GENDER_FIELD}    ${value}
+
+Select Sports
+    [Arguments]    ${value}
+    Select Checkbox    ${value}
+
+Submit Button
+    [Arguments]    ${button}
+    Click Button    ${button}
+
+Confirm Page
+    Title Should Be    ${CONFIRM}
+
