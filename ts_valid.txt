@@ -1,0 +1,32 @@
+*** Settings ***
+Documentation     Populate 5 entries with valid data. After running the test case, all 5 entries will be saved to the form repository.
+Test Setup        Open Browser To Test Form
+Test Teardown     Close Browser
+Test Template     Fill With Valid Entries
+Resource          resource.txt
+
+*** Test Cases ***    Name              Age              Gender    Sports
+Minimum Name And Age
+                      ${MIN_NAME}       ${MIN_AGE}       Male      BasketballX
+
+Maximum Name And Age
+                      ${MAX_NAME}       ${MAX_AGE}       Female    Swimming
+
+Maximum Name And Minimum Age
+                      ${MAX_NAME}       ${MIN_AGE}       Male      MMA
+
+Minimum Name And Maximum Age
+                      ${MIN_NAME}       ${MAX_AGE}       Female    Volleyball
+
+Within Limits         ${NORMAL_NAME}    ${NORMAL_AGE}    Female    Gymnastics
+
+*** Keywords ***
+Fill With Valid Entries
+    [Arguments]    ${name}    ${age}    ${gender}    ${sports}
+    Input Name    ${name}
+    Input Age    ${age}
+    Select Gender    ${gender}
+    Submit Button    ${CONTINUE}
+    Select Sports    ${sports}
+    Submit Button    ${SUBMIT}
+    Confirm Page
