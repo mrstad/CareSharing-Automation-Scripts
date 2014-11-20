@@ -48,18 +48,21 @@ Check Continue Button
 Check Name If Required
     Input Name    ${EMPTY}
     Submit Button    ${CONTINUE}
+    #   commented the line below because FF browser errors were not English.
     #    Page Should Contain    ${ERROR_REQUIRED}
 
 Check Age If Required
     Input Age    ${EMPTY}
     Submit Button    ${CONTINUE}
+    #   commented the line below because FF browser errors were not English.
     #    Page Should Contain    ${ERROR_REQUIRED}
 
 Check Gender If Required
     Radio Button Should Not Be Selected    ${GENDER_FIELD}
     Submit Button    ${CONTINUE}
-    #    Page Should Contain    ${ERROR_REQUIRED}
-    # ==========================================================
+    #   commented the line below because FF browser errors were not English.
+    #    Page Should Contain    ${ERROR_REQUIRED} 
+
 
 Check Sports List For Male
     Input Name    ${NORMAL_NAME}
