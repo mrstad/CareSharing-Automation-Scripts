@@ -1,0 +1,104 @@
+*** Settings ***
+Documentation     Check and validate presence of prescribed texts and elements in forms.
+Test Setup        Open Browser To Test Form
+Test Teardown     Close Browser
+Resource          resource.txt
+
+*** Test Cases ***
+Validate Elements
+    Check Name Field
+    Check Age Field
+    Check Gender Radio Button
+    Check Continue Button
+
+Validate Required Fields
+    Check Name If Required
+    Check Age If Required
+    Check Gender If Required
+
+Validate Sports Under Male
+    Check Sports List For Male
+
+Validate Sports Under Female
+    Check Sports List For Female
+
+*** Keywords ***
+Check Name Field
+    Page Should Contain    Name
+    Element Should Be Visible    ${NAME_FIELD}
+    Page Should Contain Textfield    ${NAME_FIELD}
+    Element Should Be Enabled    ${NAME_FIELD}
+
+Check Age Field
+    Element Should Be Visible    ${AGE_FIELD}
+    Element Should Be Enabled    ${AGE_FIELD}
+
+Check Gender Radio Button
+    Element Should Be Visible    ${GENDER_FIELD}
+    Element Should Be Enabled    ${GENDER_FIELD}
+    Page Should Contain Radio Button    Male
+    Page Should Contain Radio Button    Female
+
+Check Continue Button
+    Element Should Be Visible    ${CONTINUE}
+    Element Should Be Enabled    ${CONTINUE}
+    # ======================================================
+    # ======Required======
+
+Check Name If Required
+    Input Name    ${EMPTY}
+    Submit Button    ${CONTINUE}
+    #    Page Should Contain    ${ERROR_REQUIRED}
+
+Check Age If Required
+    Input Age    ${EMPTY}
+    Submit Button    ${CONTINUE}
+    #    Page Should Contain    ${ERROR_REQUIRED}
+
+Check Gender If Required
+    Radio Button Should Not Be Selected    ${GENDER_FIELD}
+    Submit Button    ${CONTINUE}
+    #    Page Should Contain    ${ERROR_REQUIRED}
+    # ==========================================================
+
+Check Sports List For Male
+    Input Name    ${NORMAL_NAME}
+    Input Age    ${NORMAL_AGE}
+    Select Gender    Male
+    Submit Button    ${CONTINUE}
+    Page Should Contain Checkbox    ${SPORTS_MALE}
+    Check Checkbox Value For Male
+    Check Back And Submit Button
+
+Check Checkbox Value For Male
+    Page Should Contain    Basketball
+    Page Should Contain    Wrestling
+    Page Should Contain    Running
+    Page Should Contain    MMA
+
+Check Sports List For Female
+    Input Name    ${NORMAL_NAME}
+    Input Age    ${NORMAL_AGE}
+    Select Gender    Female
+    Submit Button    ${CONTINUE}
+    Page Should Contain Checkbox    ${SPORTS_FEMALE}
+    Check Checkbox Value For Female
+    Check Back And Submit Button
+
+Check Checkbox Value For Female
+    Page Should Contain    Volleyball
+    Page Should Contain    Swimming
+    Page Should Contain    Running
+    Page Should Contain    Gymnastics
+
+Check Back And Submit Button
+    Check Back Button
+    Check Submit Button
+
+Check Back Button
+    Element Should Be Visible    ${BACK}
+    Element Should Be Enabled    ${BACK}
+
+Check Submit Button
+    Element Should Be Visible    ${SUBMIT}
+    Element Should Be Enabled    ${SUBMIT}
