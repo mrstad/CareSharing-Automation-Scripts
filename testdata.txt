@@ -1,0 +1,36 @@
+*** Settings ***
+Documentation	Test data place holder.
+
+*** Variables ***
+${URL}            https://docs.google.com/forms/d/12f7orObPipIDCZOOQsIH9_U6kGgEVOGFhd5qgO0myEo/viewform?fbzx=-5294445733973195140
+${BROWSER}        Firefox
+${DELAY}          0
+${TITLE}		  Test Form
+${CONFIRM}		  Salamat!
+
+# Input Fields
+${NAME_FIELD}	  entry.1563791636
+${AGE_FIELD}	  entry.930637752
+${GENDER_FIELD}	  entry.351010933
+${SPORTS_FIELD}	  entry_1027532989
+
+# Buttons
+${CONTINUE}		  continue
+${SUBMIT}		  submit
+${BACK}			  back
+
+# Valid Values
+${MAX_NAME}	      123CareSharingTestForm123456CareSharingTestForm123
+${MIN_NAME}       FIVE5
+${MAX_AGE}        150
+${MIN_AGE}        5
+${NORMAL_NAME}	  CareSharing123
+${NORMAL_AGE}     65
+
+# Invalid Values
+${INVALID_NAME}	  !@##$%^8ABc*
+${INVALID_AGE}	  151abc
+
+# Errors
+${ERROR_REQUIRED}	This is a required question
+${ERROR_INVALID}	Invalid value.
